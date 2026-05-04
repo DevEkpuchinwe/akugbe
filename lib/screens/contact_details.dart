@@ -56,7 +56,7 @@ key: auth.contactDetailsKey,
                       items: countries,
                       hint: Text(
                         "Choose country",
-                        style: normalTextPrimaryColor!.copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
+                        style: normalTextPrimaryColor.copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
                       )),
                   30.verticalSpace,
                   AppTextForm(

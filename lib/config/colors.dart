@@ -13,8 +13,8 @@ class GlobalColors {
   static Color orangeColor = const Color.fromRGBO(255, 109, 0, 1);
   static const backgroundColor = Color(0xFFF8F9FD);
   static const blackColor = Color(0xFF000000);
-  static const blueColor = const Color(0xFF151C2F);
-  static const primaryColor = const MaterialColor(
+  static const blueColor = Color(0xFF151C2F);
+  static const primaryColor = MaterialColor(
     0xFFFCD146, // Base color value (same as primaryColorValue)
     <int, Color>{
       50: Color.fromRGBO(252, 209, 70, 0.1),

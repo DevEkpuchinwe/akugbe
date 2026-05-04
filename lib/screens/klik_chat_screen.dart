@@ -9,7 +9,7 @@ class KlikChatScreen extends StatefulWidget {
   final String endDate;
   final List<Map<String, String>> members; // List of members
 
-  KlikChatScreen({
+  const KlikChatScreen({super.key, 
     required this.groupName,
     required this.groupImageUrl,
     required this.description,

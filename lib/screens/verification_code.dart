@@ -22,6 +22,7 @@ class VerificationCode extends ConsumerStatefulWidget {
 class _VerificationCodeState extends ConsumerState<VerificationCode> with AppNavigator {
   @override
   String otp = "";
+  @override
   Widget build(BuildContext context) {
     final auth = ref.watch(authProvider);
     return Scaffold(

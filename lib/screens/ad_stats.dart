@@ -26,6 +26,7 @@ class _AdStatState extends ConsumerState<EngagementStat> with AppNavigator {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     final authRef = ref.watch(authProvider);
     final profileRef = ref.watch(profileProvider);
@@ -140,9 +141,9 @@ class _AdStatState extends ConsumerState<EngagementStat> with AppNavigator {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:  [
-                Text("Like", style: smallNormalTextBold!.copyWith(color: Colors.blue)),
-                Text("Views", style: smallNormalTextBold!.copyWith(color: Colors.orange)),
-                Text("Comments", style: smallNormalTextBold!.copyWith(color: Colors.green)),
+                Text("Like", style: smallNormalTextBold.copyWith(color: Colors.blue)),
+                Text("Views", style: smallNormalTextBold.copyWith(color: Colors.orange)),
+                Text("Comments", style: smallNormalTextBold.copyWith(color: Colors.green)),
               ],
             ),
           ],
@@ -166,11 +167,11 @@ class _AdStatState extends ConsumerState<EngagementStat> with AppNavigator {
               children: [
                 Text(
                   title,
-                  style:  smallNormalTextBold!.copyWith(fontSize: 14, color: Colors.black87),
+                  style:  smallNormalTextBold.copyWith(fontSize: 14, color: Colors.black87),
                 ),
                 Text(
                   "$value",
-                  style: smallNormalTextBold!.copyWith(fontSize: 14, fontWeight: FontWeight.bold),
+                  style: smallNormalTextBold.copyWith(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
               ],
             ),

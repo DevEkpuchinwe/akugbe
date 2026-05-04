@@ -41,7 +41,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
       appBar: AppBar(
         title: Text(
           "Wallet",
-          style: boldText!.copyWith(
+          style: boldText.copyWith(
               fontSize: 17.sp,
               fontWeight: FontWeight.w300,
               color: GlobalColors.blueColor),
@@ -92,7 +92,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                           ? AppUtils.formatAmount(
                               wallet.walletBalanceModel?.data?.balance ?? "0")
                           : "*****",
-                      style: normalTextBold!.copyWith(
+                      style: normalTextBold.copyWith(
                           color: GlobalColors.blueColor,
                           fontSize: 25.sp,
                           fontWeight: FontWeight.w100),
@@ -131,7 +131,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                                 10.horizontalSpace,
                                 Text(
                                   "Withdraw",
-                                  style: smallNormalTextBolder!.copyWith(
+                                  style: smallNormalTextBolder.copyWith(
                                       color: GlobalColors.blueColor,
                                       fontSize: 14.sp),
                                 )
@@ -169,7 +169,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                                   10.horizontalSpace,
                                   Text(
                                     "Add Funds",
-                                    style: smallNormalTextBolder!.copyWith(
+                                    style: smallNormalTextBolder.copyWith(
                                         color: GlobalColors.whiteColor,
                                         fontSize: 14.sp),
                                   )
@@ -191,7 +191,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                 Text("Transaction History"),
                 Text(
                   "See All",
-                  style: normalText!.copyWith(color: Colors.grey),
+                  style: normalText.copyWith(color: Colors.grey),
                 )
               ],
             ),
@@ -231,7 +231,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                                     .data!
                                     .transaction[index]
                                     .type),
-                                style: smallNormalTextBolder!.copyWith(
+                                style: smallNormalTextBolder.copyWith(
                                     fontSize: 11.sp,
                                     color: GlobalColors.blueColor,
                                     fontStyle: FontStyle.normal,
@@ -245,7 +245,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                                         .transaction[index]
                                         .updatedAt ??
                                     DateTime.now()),
-                                style: normalText!.copyWith(
+                                style: normalText.copyWith(
                                     color: Colors.grey, fontSize: 10.sp),
                               ),
                             ],
@@ -256,7 +256,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                                 Text(
                                   AppUtils.formatAmount(wallet.walletBalanceModel!
                                       .data!.transaction[index].amount),
-                                  style: smallNormalTextBolder!.copyWith(
+                                  style: smallNormalTextBolder.copyWith(
                                       fontSize: 10.sp,
                                       color: GlobalColors.blueColor),
                                 ),
@@ -267,7 +267,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                                       .data!
                                       .transaction[index]
                                       .status),
-                                  style: errorText!.copyWith(
+                                  style: errorText.copyWith(
                                       fontSize: 10.sp,
                                       color: formatTransactionStatusColor(wallet
                                           .walletBalanceModel!
@@ -308,7 +308,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
               ? Icon(icon, size: 20, color: Colors.black)
               : Text(
                   label ?? '',
-                  style: smallNormalTextBolder!.copyWith(fontSize: 16.sp),
+                  style: smallNormalTextBolder.copyWith(fontSize: 16.sp),
                 ),
         ),
       ),
@@ -324,13 +324,13 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
           String localAmount = _amount;
           return StatefulBuilder(builder: (BuildContext innerContext,
               StateSetter setModalState /*You can rename this!*/) {
-            void _onKeyTap(String value) {
+            void onKeyTap(String value) {
               setModalState(() {
                 localAmount += value;
               });
             }
 
-            void _onBackspaceTap() {
+            void onBackspaceTap() {
               setModalState(() {
                 if (localAmount.isNotEmpty) {
                   localAmount =
@@ -353,7 +353,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                   child: Column(
                     children: [
                       Text("Enter Amount",
-                          style: normalText!.copyWith(
+                          style: normalText.copyWith(
                               color: GlobalColors.blackColor,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.bold)),
@@ -369,7 +369,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                           child: Text(
                               maxLines: 1,
                               formattedLocalAmount,
-                              style: header!.copyWith(
+                              style: header.copyWith(
                                   color: GlobalColors.blackColor,
                                   fontSize: 16.sp)),
                         ),
@@ -392,7 +392,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                           } else if (index == 11) {
                             return _buildKey(
                               icon: Icons.backspace_outlined,
-                              onTap: _onBackspaceTap,
+                              onTap: onBackspaceTap,
                             );
                           } else {
                             String value = index == 10 ? "0" : "${index + 1}";
@@ -400,7 +400,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                               label: value,
                               onTap: () {
                                 if (localAmount.length <= 6) {
-                                  _onKeyTap(value);
+                                  onKeyTap(value);
                                 } else {
                                   AppUtils.showErrorMessage(
                                       context,
@@ -456,13 +456,13 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
           var localAmount = "";
           return StatefulBuilder(builder: (BuildContext innerContext,
               StateSetter setModalState /*You can rename this!*/) {
-            void _onKeyTap(String value) {
+            void onKeyTap(String value) {
               setModalState(() {
                 localAmount += value;
               });
             }
 
-            void _onBackspaceTap() {
+            void onBackspaceTap() {
               setModalState(() {
                 if (localAmount.isNotEmpty) {
                   localAmount =
@@ -485,7 +485,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                   child: Column(
                     children: [
                       Text("Enter Amount",
-                          style: normalText!.copyWith(
+                          style: normalText.copyWith(
                               color: GlobalColors.blackColor,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.bold)),
@@ -501,7 +501,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                           child: Text(
                               maxLines: 1,
                               formattedLocalAmount,
-                              style: header!.copyWith(
+                              style: header.copyWith(
                                   color: GlobalColors.blackColor,
                                   fontSize: 16.sp)),
                         ),
@@ -524,7 +524,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                           } else if (index == 11) {
                             return _buildKey(
                               icon: Icons.backspace_outlined,
-                              onTap: _onBackspaceTap,
+                              onTap: onBackspaceTap,
                             );
                           } else {
                             String value = index == 10 ? "0" : "${index + 1}";
@@ -532,7 +532,7 @@ class _WalletState extends ConsumerState<Wallet> with AppNavigator {
                               label: value,
                               onTap: () {
                                 if (localAmount.length <= 6) {
-                                  _onKeyTap(value);
+                                  onKeyTap(value);
                                 } else {
                                   AppUtils.showErrorMessage(
                                       context,
@@ -672,18 +672,18 @@ class _PaymentDetailsState extends ConsumerState<PaymentDetails> {
         children: [
           Text(
             "Transfer NGN",
-            style: boldText!.copyWith(color: GlobalColors.blueColor),
+            style: boldText.copyWith(color: GlobalColors.blueColor),
           ),
           10.verticalSpace,
           Text(
             "Pay with Bank Transfer",
-            style: boldText!.copyWith(color: GlobalColors.blueColor),
+            style: boldText.copyWith(color: GlobalColors.blueColor),
           ),
           10.verticalSpace,
           Text.rich(TextSpan(children: [
             TextSpan(
                 text: "Account number expires in ",
-                style: normalText!.copyWith(color: GlobalColors.blueColor),
+                style: normalText.copyWith(color: GlobalColors.blueColor),
                 children: [
                   TextSpan(
                       text: "${wallet.remainingMinutes} mins",
@@ -715,7 +715,7 @@ class _PaymentDetailsState extends ConsumerState<PaymentDetails> {
                     .walletDepositResponse!.data!.responseBody!.accountNumber),
             suffixWidget: GestureDetector(
                 onTap: () {
-                  Clipboard.setData(new ClipboardData(text: "Copied"))
+                  Clipboard.setData(ClipboardData(text: "Copied"))
                       .then((_) {
                     AppUtils.showSuccessMessage(context, "Copied");
                   });
@@ -732,7 +732,7 @@ class _PaymentDetailsState extends ConsumerState<PaymentDetails> {
                     .toString())),
             suffixWidget: GestureDetector(
                 onTap: () {
-                  Clipboard.setData(new ClipboardData(text: "Copied"))
+                  Clipboard.setData(ClipboardData(text: "Copied"))
                       .then((_) {
                     AppUtils.showSuccessMessage(context, "Copied");
                   });
@@ -778,7 +778,7 @@ class _WithdrawDetailsState extends ConsumerState<WithdrawDetails> {
         children: [
           Text(
             "Enter Withdrawal Details",
-            style: boldText!.copyWith(color: GlobalColors.blueColor),
+            style: boldText.copyWith(color: GlobalColors.blueColor),
           ),
           20.verticalSpace,
           Padding(
@@ -801,7 +801,7 @@ class _WithdrawDetailsState extends ConsumerState<WithdrawDetails> {
                   .toList(),
               hint: Text(
                 "Choose bank",
-                style: normalTextPrimaryColor!
+                style: normalTextPrimaryColor
                     .copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
               )),
           20.verticalSpace,

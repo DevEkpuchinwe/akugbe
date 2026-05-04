@@ -45,7 +45,7 @@ class _SearchState extends ConsumerState<Search> with AppNavigator {
               ),
               child: TextField(
                 decoration: InputDecoration(
-                  hintStyle: normalTextPrimaryColor!
+                  hintStyle: normalTextPrimaryColor
                       .copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
                   hintText: "Search...",
                   border: InputBorder.none, // Removes default underline

@@ -20,6 +20,7 @@ class _FAQState extends ConsumerState<FAQ> with AppNavigator {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     final profileRef = ref.watch(profileProvider);
     return Scaffold(
@@ -69,7 +70,7 @@ class _FAQState extends ConsumerState<FAQ> with AppNavigator {
                     child: Text(
                       "Get in touch",
                       style:
-                      normalText!.copyWith(color: GlobalColors.whiteColor),
+                      normalText.copyWith(color: GlobalColors.whiteColor),
                     ),
                   ),
                 ),

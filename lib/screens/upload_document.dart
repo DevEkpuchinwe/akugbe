@@ -25,6 +25,7 @@ class _UploadDocumentState extends ConsumerState<UploadDocument> with AppNavigat
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     final homeRef = ref.watch(homeProvider);
     return Scaffold(

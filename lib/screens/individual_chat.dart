@@ -21,7 +21,7 @@ class _IndividualChatState extends ConsumerState<IndividualChat> with AppNavigat
 
   final TextEditingController _controller = TextEditingController();
   bool _isEmojiVisible = false; // Toggle for emoji keyboard
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   void _toggleEmojiKeyboard() {
     if (_isEmojiVisible) {
@@ -197,7 +197,7 @@ class _IndividualChatState extends ConsumerState<IndividualChat> with AppNavigat
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        Text("Online", style: smallNormalText!.copyWith(fontSize: 10), textAlign: TextAlign.start,
+                        Text("Online", style: smallNormalText.copyWith(fontSize: 10), textAlign: TextAlign.start,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis)
                       ],

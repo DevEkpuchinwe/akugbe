@@ -30,6 +30,7 @@ class _AdStatState extends ConsumerState<ReviewAd> with AppNavigator {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     final authRef = ref.watch(authProvider);
     final profileRef = ref.watch(profileProvider);

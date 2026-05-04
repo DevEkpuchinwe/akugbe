@@ -110,6 +110,7 @@ class AuthProvider extends ChangeNotifier with AuthService, AppNavigator {
   DateTime? selectedDate;
 
   // Dispose controllers when no longer needed
+  @override
   void dispose() {
     userNameController.dispose();
     emailController.dispose();

@@ -91,7 +91,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount> with AppNavigator
                     child: Center(
                       child:  Text.rich(TextSpan(
                           text: "Already have an account?   ",
-                          style: smallNormalText!.copyWith(color: Colors.grey),
+                          style: smallNormalText.copyWith(color: Colors.grey),
                           children: [
                             TextSpan(
                                 text: "Log in",

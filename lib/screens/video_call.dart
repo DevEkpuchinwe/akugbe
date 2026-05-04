@@ -13,7 +13,7 @@ class VideoCall extends ConsumerStatefulWidget {
 class _VideoCallState extends ConsumerState<VideoCall> {
   late RtcEngine _engine;
   int? _remoteUid; // Stores remote user ID
-  bool _localUserJoined = false;
+  final bool _localUserJoined = false;
 
   Future<void> _initializeAgoraVideoSDK() async {
     _engine = createAgoraRtcEngine();

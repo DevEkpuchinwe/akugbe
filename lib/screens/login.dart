@@ -78,11 +78,11 @@ class _LoginState extends ConsumerState<Login> with AppNavigator {
                     child: Center(
                       child:  Text.rich(TextSpan(
                           text: "New here? ",
-                          style: smallNormalText!.copyWith(fontSize: 15, color: Colors.grey),
+                          style: smallNormalText.copyWith(fontSize: 15, color: Colors.grey),
                           children: [
                             TextSpan(
                                 text: "Create Account",
-                                style: errorText!.copyWith(fontWeight: FontWeight.bold))
+                                style: errorText.copyWith(fontWeight: FontWeight.bold))
                           ])),
                     ),
                   )

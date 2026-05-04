@@ -41,6 +41,7 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo> with AppNavigator {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     final auth = ref.watch(authProvider);
     return Scaffold(

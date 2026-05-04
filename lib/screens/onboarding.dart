@@ -1,6 +1,4 @@
 import 'package:akugbe/screens/create_account.dart';
-import 'package:akugbe/screens/login.dart';
-import 'package:akugbe/screens/wallet.dart';
 import 'package:akugbe/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

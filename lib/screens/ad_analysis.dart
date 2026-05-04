@@ -30,6 +30,7 @@ class _PostStatState extends ConsumerState<PostStat> with AppNavigator {
     //  ref.read(profileProvider).callGetUserPostStat(context);
     });
   }
+  @override
   Widget build(BuildContext context) {
     final authRef = ref.watch(authProvider);
     final profileRef = ref.watch(profileProvider);
@@ -92,7 +93,7 @@ class _PostStatState extends ConsumerState<PostStat> with AppNavigator {
         children: [
           Text(
             title,
-            style: smallNormalTextBold!.copyWith(fontSize: 15)
+            style: smallNormalTextBold.copyWith(fontSize: 15)
           ),
           GestureDetector(
             onTap: isClickable ? () {} : null,

@@ -171,7 +171,7 @@ class _NewKlikState extends ConsumerState<NewKlik> {
                   children: [
                     _image != null
                         ? CircleAvatar(backgroundImage: FileImage(_image!), radius: 30)
-                        : CircleAvatar(child: Icon(Icons.camera_alt), radius: 30),
+                        : CircleAvatar(radius: 30, child: Icon(Icons.camera_alt)),
                     SizedBox(width: 10),
                     TextButton(
                       onPressed: _pickImage,

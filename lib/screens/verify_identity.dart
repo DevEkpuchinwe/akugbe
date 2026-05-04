@@ -52,6 +52,7 @@ class _VerifyIdentityState extends ConsumerState<VerifyIdentity>
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     final homeRef = ref.watch(homeProvider);
     return Scaffold(
@@ -83,7 +84,7 @@ class _VerifyIdentityState extends ConsumerState<VerifyIdentity>
               Text(
                 "Verify your Identity",
                 textAlign: TextAlign.center,
-                style: normalText!.copyWith(),
+                style: normalText.copyWith(),
               ),
               20.verticalSpace,
               Text(

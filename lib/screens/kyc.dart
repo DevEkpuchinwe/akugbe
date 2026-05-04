@@ -24,6 +24,7 @@ class _KYCState extends ConsumerState<KYC> with AppNavigator {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     final profileRef = ref.watch(profileProvider);
     return Scaffold(
@@ -55,7 +56,7 @@ class _KYCState extends ConsumerState<KYC> with AppNavigator {
               Text(
                 "Let's verify your identity in 2 minutes",
                 textAlign: TextAlign.center,
-                style: normalText!.copyWith(),
+                style: normalText.copyWith(),
               ),
               20.verticalSpace,
               Text(

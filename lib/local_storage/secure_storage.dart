@@ -21,6 +21,7 @@ class SecureStorage {
 
   Future<bool?> getBool(String key) async {
     var d =  await _storage.read(key: key);
+    return null;
    // bool boolValue = d ;
 
   }

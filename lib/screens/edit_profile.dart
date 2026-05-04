@@ -1,7 +1,6 @@
 import 'package:akugbe/config/colors.dart';
 import 'package:akugbe/config/text_styles.dart';
 import 'package:akugbe/custom_widgets/text_fields.dart';
-import 'package:akugbe/providers/authProvider.dart';
 import 'package:akugbe/providers/profile_provider.dart';
 import 'package:akugbe/utils/navigator.dart';
 import 'package:cached_network_image/cached_network_image.dart';

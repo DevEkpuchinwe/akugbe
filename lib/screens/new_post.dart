@@ -138,7 +138,7 @@ class _NewPostState extends ConsumerState<NewPost> with AppNavigator {
                       5.verticalSpace,
                       Text(
                         "Add Image or Video",
-                        style: smallNormalText!.copyWith(color: Colors.grey),
+                        style: smallNormalText.copyWith(color: Colors.grey),
                       )
                     ],
                   ),

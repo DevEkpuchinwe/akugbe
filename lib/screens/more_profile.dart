@@ -86,7 +86,7 @@ class _MoreProfileState extends ConsumerState<MoreProfile> with AppNavigator {
                       Text(
                         "Help/Support",
                         style:
-                            normalText!.copyWith(color: GlobalColors.whiteColor),
+                            normalText.copyWith(color: GlobalColors.whiteColor),
                       )
                     ],
                   ),

@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:akugbe/config/text_styles.dart';
 import 'package:akugbe/providers/home_provider.dart';
-import 'package:akugbe/providers/profile_provider.dart';
-import 'package:akugbe/screens/choose_document.dart';
 import 'package:akugbe/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

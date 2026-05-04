@@ -26,6 +26,7 @@ class _ChooseDocumentState extends ConsumerState<ChooseDocument>
 
   String? document;
 
+  @override
   Widget build(BuildContext context) {
     final profileRef = ref.watch(profileProvider);
     return Scaffold(
@@ -57,7 +58,7 @@ class _ChooseDocumentState extends ConsumerState<ChooseDocument>
               Text(
                 "Let's obtain your transaction verification",
                 textAlign: TextAlign.center,
-                style: normalText!.copyWith(),
+                style: normalText.copyWith(),
               ),
               20.verticalSpace,
               Text(

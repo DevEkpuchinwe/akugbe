@@ -25,6 +25,13 @@ class AppUtils with AppNavigator{
     await UserPreferences.clearUserPreferences();
   }
 
+  
+
+  static String formatDate(DateTime date) {
+    // Format as e.g., "Jun 4, 2025"
+    return DateFormat('MMM d, y').format(date);
+  }
+
   static showLoadingDialog(String message, BuildContext parentContext) {
     showDialog(
         barrierDismissible: false,
@@ -130,7 +137,7 @@ class AppUtils with AppNavigator{
 
   static showErrorMessage(
       BuildContext context, String text, bool showRetry, String? title,
-      {Function? retryFunction = null}) {
+      {Function? retryFunction}) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -151,7 +158,7 @@ class AppUtils with AppNavigator{
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        title == null ? "Error" : title!,
+                        title == null ? "Error" : title,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 15.0,

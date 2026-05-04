@@ -32,6 +32,7 @@ class _AdStatState extends ConsumerState<BoostPost> with AppNavigator {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     final authRef = ref.watch(authProvider);
     final profileRef = ref.watch(profileProvider);

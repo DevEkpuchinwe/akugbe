@@ -1,12 +1,21 @@
+import 'dart:io';
+
 import 'package:akugbe/config/colors.dart';
 import 'package:akugbe/config/text_styles.dart';
+import 'package:akugbe/network_config/network_base.dart';
 import 'package:akugbe/providers/home_provider.dart';
+import 'package:akugbe/screens/bottom_bar.dart';
 import 'package:akugbe/screens/feed.dart';
 import 'package:akugbe/utils/navigator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 
 import '../custom_widgets/filled_stateless_button.dart';
 
@@ -18,8 +27,19 @@ class CreatePost extends ConsumerStatefulWidget {
 }
 
 class _CreatePostState extends ConsumerState<CreatePost> with AppNavigator {
+  final TextEditingController contentController = TextEditingController();
+   @override
+  void dispose() {
+    contentController.dispose();
+    super.dispose();
+  }
+
   @override
+  //final TextEditingController contentController = TextEditingController();
+
   Widget build(BuildContext context) {
+  //  final TextEditingController contentController = TextEditingController();
+
     final homeRef = ref.watch(homeProvider);
     return Scaffold(
       appBar: AppBar(
@@ -63,7 +83,8 @@ class _CreatePostState extends ConsumerState<CreatePost> with AppNavigator {
                       child: Column(
                         children: [
                           TextFormField(
-                            style: normalText!
+                             controller: contentController, // attach the controller
+                            style: normalText
                                 .copyWith(color: GlobalColors.blackColor),
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
@@ -71,7 +92,7 @@ class _CreatePostState extends ConsumerState<CreatePost> with AppNavigator {
                             decoration: InputDecoration(
                               isDense: true,
                               contentPadding: EdgeInsets.all(0),
-                              hintStyle: normalTextPrimaryColor!.copyWith(
+                              hintStyle: normalTextPrimaryColor.copyWith(
                                   color: Color.fromRGBO(196, 196, 196, 1)),
                               hintText: "Tell your story...",
                               border: InputBorder.none,
@@ -91,7 +112,7 @@ class _CreatePostState extends ConsumerState<CreatePost> with AppNavigator {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              if (homeRef.editedImageToPost != null)
+                              if (homeRef.editedImageToPost != null) //this video or picture is  the one to upload as the file when the post button is tapped 
                                 Image.memory(
                                   homeRef.editedImageToPost!,
                                   fit: BoxFit.cover,
@@ -126,7 +147,7 @@ class _CreatePostState extends ConsumerState<CreatePost> with AppNavigator {
                     Icon(Icons.location_on_outlined),
                     10.horizontalSpace,
                     Text(
-                      "Port Harcourt, Nigeria",
+                      "Port Harco, Nigeria",
                       style: normalText,
                     )
                   ],
@@ -169,14 +190,25 @@ class _CreatePostState extends ConsumerState<CreatePost> with AppNavigator {
                   buttonColor: GlobalColors.primaryColor,
                   textColor: GlobalColors.blackColor,
                   text: "Post",
-                  onTap: () {
-                    pushAndRemoveAllPreviousScreens(context, const Feed());
+                  onTap:  () {
+                    print('post clicked');
+                    postCreate(contentText:contentController.text);
+
+                  // postCreate(contentText:'contentController.text');
+
+                    //also send the details to db using the network config provider and 
+                   // pushAndRemoveAllPreviousScreens(context, const Feed());
                   })
             ],
           ),
         ),
-      )),
+      )
+      
+      ),
+      
     );
+    
+
   }
 
   void showFriendsList() {
@@ -192,6 +224,152 @@ class _CreatePostState extends ConsumerState<CreatePost> with AppNavigator {
           });
         });
   }
+
+  /*void postCrea() async {
+  final homeRef = ref.read(homeProvider);
+
+  FormData formData = FormData();
+
+  // Add the text content
+  formData.fields.add(MapEntry('content', 'Your post text here'));
+
+  // Add image or video file if available
+  if (homeRef.editedImageToPost != null) {
+    formData.files.add(MapEntry(
+      'image',
+      MultipartFile.fromBytes(
+        homeRef.editedImageToPost!,
+        filename: 'image.jpg', // you can customize the name and extension
+     //   contentType: MediaType('image', 'jpeg'), // import from 'package:http_parser/http_parser.dart'
+     contentType: MediaType('application', 'octet-stream')
+
+      ),
+    ));
+  } else if (homeRef.newVideoThumbnail != null) {
+    // Assuming you also have the video bytes stored somewhere (homeRef.newVideoFile maybe)
+    formData.files.add(MapEntry(
+      'video',
+      MultipartFile.fromBytes(
+        homeRef.newVideoFile!, // <-- your actual video bytes
+        filename: 'video.mp4',
+        contentType: MediaType('video', 'mp4'),
+      ),
+    ));
+  }
+
+ 
+  try {
+  final response = await NetworkConfig().postRequest(
+    'posts',
+    formData,
+    needAuth: true,
+    isFormData: true,
+  );
+
+  if (response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300) {
+    // Success - navigate or show success message
+     print('Posts created successfully:');
+     Navigator.push(
+  context,
+  MaterialPageRoute(builder: (context) => BottomBar()),
+);
+
+   //pushAndRemoveAllPreviousScreens(context, const BottomBar());
+  } else {
+    // Handle non-success status codes
+    print('Failed to create post: ${response.statusCode}');
+  }
+} on DioException catch (e) {
+  // Handle network or request errors
+  print('DioException: $e');
+}
+
+}*/
+
+
+Future<String?> uploadMediaToSupabase(Uint8List fileBytes, String fileName, String contentType) async {
+  final supabase = Supabase.instance.client;
+
+  try {
+    await supabase.storage
+        .from('posts')
+        .uploadBinary(
+          fileName,
+          fileBytes,
+          fileOptions: FileOptions(
+            upsert: true,
+            contentType: contentType,
+          ),
+        );
+
+    return supabase.storage.from('posts').getPublicUrl(fileName);
+  } catch (e) {
+    print('❌ Supabase Upload Error: $e');
+    return null;
+  }
+}
+
+void postCreate({required String contentText}) async {
+  final homeRef = ref.read(homeProvider);
+
+  // Step 1: Create post first
+  FormData formData = FormData();
+  formData.fields.add(MapEntry('content', contentText));
+
+  try {
+    final response = await NetworkConfig().postRequest(
+      'posts',
+      formData,
+      needAuth: true,
+      isFormData: true,
+    );
+
+    if (response.statusCode != null &&
+        response.statusCode! >= 200 &&
+        response.statusCode! < 300) {
+      final postId = response.data['data']['id'];
+      print('✅ Post created: $postId');
+
+      String? mediaUrl;
+
+      // Step 2: Upload actual media to Supabase
+      if (homeRef.editedImageToPost != null) {
+        mediaUrl = await uploadMediaToSupabase(
+          homeRef.editedImageToPost!,
+          '$postId',
+          'image/jpeg',
+        );
+      } else if (homeRef.newVideoFile != null) {
+        mediaUrl = await uploadMediaToSupabase(
+          homeRef.newVideoFile!,
+          '$postId',
+          'video/mp4',
+        );
+      }
+
+      if (mediaUrl != null) {
+        print('✅ Media uploaded to Supabase: $mediaUrl');
+
+        // Optional: Update the post with media URL
+        //await NetworkConfig().patchRequest(
+       //   'posts/$postId',
+        //  data: {'media_url': mediaUrl},
+       //   needAuth: true,
+       // );
+      }
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => BottomBar()),
+      );
+    } else {
+      print('❌ Failed to create post: ${response.statusCode}');
+    }
+  } on DioException catch (e) {
+    print('❌ DioException: $e');
+  }
+}
+
 
   void showLocationList() {
     showModalBottomSheet(
@@ -252,7 +430,7 @@ class _TagFriendsWidgetState extends ConsumerState<TagFriendsWidget>
             ),
             child: TextField(
               decoration: InputDecoration(
-                hintStyle: normalTextPrimaryColor!
+                hintStyle: normalTextPrimaryColor
                     .copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
                 hintText: "Search friends",
                 border: InputBorder.none, // Removes default underline
@@ -268,9 +446,9 @@ class _TagFriendsWidgetState extends ConsumerState<TagFriendsWidget>
                   return ListTile(
                     contentPadding: EdgeInsets.all(0),
                     trailing: Checkbox(
-                      fillColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        return states.contains(MaterialState.selected)
+                      fillColor: WidgetStateProperty.resolveWith<Color>(
+                          (Set<WidgetState> states) {
+                        return states.contains(WidgetState.selected)
                             ? Colors.orange
                             : Colors.grey.shade400;
                       }),
@@ -348,7 +526,7 @@ class _LocationListWidgetState extends ConsumerState<LocationListWidget>
             ),
             child: TextField(
               decoration: InputDecoration(
-                hintStyle: normalTextPrimaryColor!
+                hintStyle: normalTextPrimaryColor
                     .copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
                 hintText: "Search for a place...",
                 border: InputBorder.none, // Removes default underline

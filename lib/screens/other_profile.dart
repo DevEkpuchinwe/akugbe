@@ -27,6 +27,7 @@ class _OtherProfileState extends ConsumerState<OtherProfile> with AppNavigator {
       ref.read(profileProvider).callGetUserProfile(context);
     });
   }
+  @override
   Widget build(BuildContext context) {
     final authRef = ref.watch(authProvider);
     final profileRef = ref.watch(profileProvider);
@@ -100,7 +101,7 @@ class _OtherProfileState extends ConsumerState<OtherProfile> with AppNavigator {
                         color: GlobalColors.primaryColor),
                     child: Text(
                       "Follow",
-                      style: smallNormalTextBolder!
+                      style: smallNormalTextBolder
                           .copyWith(color: GlobalColors.whiteColor),
                     ),
                   ),
@@ -126,7 +127,7 @@ class _OtherProfileState extends ConsumerState<OtherProfile> with AppNavigator {
                         ),
                         Text(
                           "Posts",
-                          style: smallNormalText!.copyWith(
+                          style: smallNormalText.copyWith(
                               color: Color.fromRGBO(154, 154, 154, 1)),
                         )
                       ],
@@ -140,7 +141,7 @@ class _OtherProfileState extends ConsumerState<OtherProfile> with AppNavigator {
                         ),
                         Text(
                           "Kliks",
-                          style: smallNormalText!.copyWith(
+                          style: smallNormalText.copyWith(
                               color: Color.fromRGBO(154, 154, 154, 1)),
                         )
                       ],
@@ -154,7 +155,7 @@ class _OtherProfileState extends ConsumerState<OtherProfile> with AppNavigator {
                         ),
                         Text(
                           "Followers",
-                          style: smallNormalText!.copyWith(
+                          style: smallNormalText.copyWith(
                               color: Color.fromRGBO(154, 154, 154, 1)),
                         )
                       ],
@@ -168,7 +169,7 @@ class _OtherProfileState extends ConsumerState<OtherProfile> with AppNavigator {
                         ),
                         Text(
                           "Following",
-                          style: smallNormalText!.copyWith(
+                          style: smallNormalText.copyWith(
                               color: Color.fromRGBO(154, 154, 154, 1)),
                         )
                       ],
@@ -182,7 +183,7 @@ class _OtherProfileState extends ConsumerState<OtherProfile> with AppNavigator {
               length: 2,
               child: TabBar(
                   indicatorWeight: 1,
-                  unselectedLabelStyle: smallNormalTextBolder!
+                  unselectedLabelStyle: smallNormalTextBolder
                       .copyWith(color: Color.fromRGBO(154, 154, 154, 1)),
                   labelStyle: smallNormalTextBolder,
                   indicatorSize: TabBarIndicatorSize.label,

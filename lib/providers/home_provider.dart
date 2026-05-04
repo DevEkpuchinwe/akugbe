@@ -11,7 +11,9 @@ final homeProvider = ChangeNotifierProvider<HomeProvider>((ref) {
 });
 
 class HomeProvider extends ChangeNotifier with AppNavigator {
-
+ // Uint8List? editedImageToPost;
+  //Uint8List? newVideoThumbnail;
+  Uint8List? newVideoFile;
   XFile? newVideoToPost;
 
   Uint8List? newVideoThumbnail;

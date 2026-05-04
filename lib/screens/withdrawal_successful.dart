@@ -48,14 +48,14 @@ class _WithdrawalSuccessfulState extends ConsumerState<WithdrawalSuccessful>
             Center(
                 child: Text(
               "Withdrawal Successful",
-              style: header!.copyWith(color: GlobalColors.blueColor),
+              style: header.copyWith(color: GlobalColors.blueColor),
             )),
             10.verticalSpace,
             Center(
               child: Text(
                 textAlign: TextAlign.center,
                 "${AppUtils.formatAmount(widget.amount)} withdrawal request successful. The account will be credited once the withdrawl request is approved",
-                style: normalText!
+                style: normalText
                     .copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
               ),
             ),

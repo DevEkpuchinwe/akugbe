@@ -20,6 +20,7 @@ class _PrivacyPolicyState extends ConsumerState<PrivacyPolicy> with AppNavigator
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     final profileRef = ref.watch(profileProvider);
     return Scaffold(

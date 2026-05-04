@@ -18,6 +18,7 @@ class _SettingsState extends ConsumerState<Settings> with AppNavigator {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     final profileRef = ref.watch(profileProvider);
     return Scaffold(

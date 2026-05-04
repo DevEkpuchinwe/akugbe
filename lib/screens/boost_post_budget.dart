@@ -117,7 +117,7 @@ class _AdStatState extends ConsumerState<BoostPostBudget> with AppNavigator {
                 children: [
                   Text(
                     "${_fpw.toInt()}",
-                    style: smallNormalTextBold!.copyWith(color: GlobalColors.primaryColor, fontSize: 20),
+                    style: smallNormalTextBold.copyWith(color: GlobalColors.primaryColor, fontSize: 20),
                   ),
                    Icon(Icons.edit, color: GlobalColors.primaryColor),
                 ],

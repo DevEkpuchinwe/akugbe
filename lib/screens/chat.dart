@@ -39,7 +39,7 @@ class _ChatState extends ConsumerState<Chat> with AppNavigator {
                     Icons.search,
                     color: GlobalColors.blackColor,
                   ),
-                  hintStyle: normalTextPrimaryColor!
+                  hintStyle: normalTextPrimaryColor
                       .copyWith(color: Colors.grey),
                   hintText: "Search messages",
                   border: OutlineInputBorder(
@@ -56,7 +56,7 @@ class _ChatState extends ConsumerState<Chat> with AppNavigator {
                   ),
                   filled: true,
                   contentPadding: EdgeInsets.all(0),
-                  fillColor: Colors.grey!.shade200
+                  fillColor: Colors.grey.shade200
                   // Removes default underline
                   ),
             ),
@@ -106,7 +106,7 @@ class _ChatState extends ConsumerState<Chat> with AppNavigator {
                               ],
                             )),
                             10.horizontalSpace,
-                            Text("9:56 AM", style: smallNormalText!.copyWith(color: Colors.grey),)
+                            Text("9:56 AM", style: smallNormalText.copyWith(color: Colors.grey),)
                           ],
                         ),
                       ),

@@ -1,5 +1,4 @@
 import 'package:akugbe/screens/create_password.dart';
-import 'package:akugbe/screens/verification_code.dart';
 import 'package:akugbe/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../config/colors.dart';
 import '../config/text_styles.dart';
 import '../custom_widgets/filled_stateless_button.dart';
-import '../custom_widgets/text_fields.dart';
 import '../providers/authProvider.dart';
 
 

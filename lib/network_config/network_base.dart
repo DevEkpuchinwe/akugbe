@@ -32,9 +32,7 @@ class NetworkConfig {
         enabled: true));
 
   Future<Dio> _getDio(
-      {bool needsAuth = false,
-      Function? retry,
-      bool isFormData = false}) async {
+      {bool needsAuth = false}) async {
     Dio customizedDio = normalDio;
     if (needsAuth) {
       var token = await getAuthToken();
@@ -45,7 +43,7 @@ class NetworkConfig {
     return customizedDio;
   }
 
-  Future<Response> postRequest(String path, Map<String, dynamic>? data,
+  Future<Response> postReques(String path, Map<String, dynamic>? data,
       {bool needAuth = true,
       Map<String, dynamic>? queryParameters}) async {
     var dio = await _getDio(needsAuth: needAuth);
@@ -53,6 +51,45 @@ class NetworkConfig {
         await dio.post(path, data: data, queryParameters: queryParameters);
     return response;
   }
+
+  Future<Response> postReque(String path, dynamic data,
+    {bool needAuth = true,
+    Map<String, dynamic>? queryParameters,
+    bool isFormData = false}) async {
+  var dio = await _getDio(needsAuth: needAuth);
+
+  if (isFormData) {
+    dio.options.headers['Content-Type'] = 'multipart/form-data';
+  } else {
+    dio.options.headers['Content-Type'] = 'application/json';
+  }
+
+  final Response response =
+      await dio.post(path, data: data, queryParameters: queryParameters);
+
+  return response;
+}
+
+Future<Response> postRequest(String path, dynamic data,
+    {bool needAuth = true,
+    Map<String, dynamic>? queryParameters,
+    bool isFormData = false}) async {
+  var dio = await _getDio(needsAuth: needAuth);
+
+  if (!isFormData) {
+    dio.options.headers['Content-Type'] = 'application/json';
+  } else {
+    // Let Dio set it automatically
+    dio.options.headers.remove('Content-Type');
+  }
+
+  final Response response =
+      await dio.post(path, data: data, queryParameters: queryParameters);
+
+  return response;
+}
+
+
 
   Future<Response> getRequest(String path, Map<String, dynamic>? data,
       {bool needAuth = true,

@@ -48,14 +48,14 @@ class _PaymentReceivedState extends ConsumerState<PaymentReceived>
             Center(
                 child: Text(
               "Payment Received",
-              style: header!.copyWith(color: GlobalColors.blueColor),
+              style: header.copyWith(color: GlobalColors.blueColor),
             )),
             10.verticalSpace,
             Center(
               child: Text(
                 textAlign: TextAlign.center,
                 "${AppUtils.formatAmount(widget.amount)}has been added to your account balance",
-                style: normalText!
+                style: normalText
                     .copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
               ),
             ),

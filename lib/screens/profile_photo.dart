@@ -10,7 +10,6 @@ import '../config/colors.dart';
 import '../config/text_styles.dart';
 import '../custom_widgets/filled_stateless_button.dart';
 import '../providers/authProvider.dart';
-import 'interests.dart';
 
 class ProfilePhoto extends ConsumerStatefulWidget {
   const ProfilePhoto({super.key});

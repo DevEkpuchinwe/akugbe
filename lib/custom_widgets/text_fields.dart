@@ -91,7 +91,7 @@ class AppTextForm extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 counterText: '',
-                hintStyle: normalTextPrimaryColor!
+                hintStyle: normalTextPrimaryColor
                     .copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
                 labelStyle: boldText,
                 filled: true,
@@ -102,15 +102,15 @@ class AppTextForm extends StatelessWidget {
 }
 
 class PasswordTextForm extends StatefulWidget {
-  PasswordTextForm({
-    Key? key,
+  const PasswordTextForm({
+    super.key,
     this.onChanged,
     required this.controller,
     required this.text,
     required this.textInputType,
     required this.title,
     this.validator,
-  }) : super(key: key);
+  });
   final Function()? onChanged;
   final String? Function(String?)? validator;
   final TextEditingController controller;
@@ -161,7 +161,7 @@ class _PasswordTextFormState extends State<PasswordTextForm> {
                 ),
               ),
               hintText: widget.text,
-              hintStyle: normalTextPrimaryColor!
+              hintStyle: normalTextPrimaryColor
                   .copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
               contentPadding: const EdgeInsets.only(
                   top: 15, bottom: 15, right: 20, left: 20),
@@ -261,7 +261,7 @@ class MultiLineText extends StatelessWidget {
                 borderSide: const BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.circular(7.5),
               ),
-              hintStyle: normalTextPrimaryColor!
+              hintStyle: normalTextPrimaryColor
                   .copyWith(color: Color.fromRGBO(196, 196, 196, 1)),
               labelStyle: boldText,
               filled: true,

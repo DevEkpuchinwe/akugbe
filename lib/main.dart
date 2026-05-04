@@ -1,14 +1,20 @@
-import 'package:akugbe/screens/bottom_bar.dart';
-import 'package:akugbe/screens/feed.dart';
 import 'package:akugbe/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
-  runApp(ProviderScope(child: const MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+    url: 'https://raapnfbewyiflaoaxgmi.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhYXBuZmJld3lpZmxhb2F4Z21pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5MzU1NDgsImV4cCI6MjA2NDUxMTU0OH0.ZPFOBHDmmNQO3bwlesxNNJx7C4PxdUljiqaanfOcwvM',
+    //authFlowType: AuthFlowType.implicit,
+  );
+
+  runApp(const ProviderScope(child: MyApp()));
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

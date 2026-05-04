@@ -1,4 +1,3 @@
-import 'package:akugbe/screens/verification_sent.dart';
 import 'package:akugbe/utils/navigator.dart';
 import 'package:akugbe/utils/validators.dart';
 import 'package:flutter/material.dart';

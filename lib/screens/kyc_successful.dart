@@ -1,4 +1,3 @@
-import 'package:akugbe/screens/create_password.dart';
 import 'package:akugbe/screens/feed.dart';
 import 'package:akugbe/utils/navigator.dart';
 import 'package:flutter/material.dart';

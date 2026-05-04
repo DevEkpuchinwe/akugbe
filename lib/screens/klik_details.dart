@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class KlikDetailScreen extends StatelessWidget with AppNavigator {
   final Klik klik;
 
-  KlikDetailScreen({required this.klik});
+  KlikDetailScreen({super.key, required this.klik});
 
   @override
   Widget build(BuildContext context) {
